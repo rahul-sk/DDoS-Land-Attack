@@ -6,7 +6,7 @@
 
 myip="$(dig -4 TXT +short o-o.myaddr.l.google.com @ns1.google.com)"
 SUBSTRING=`echo "$myip" | cut -d'"' -f 2`
-sudo iptables -A INPUT -p tcp -s $SUBSTRING/32 -d $SUBSTRING/32 -j LOG --log-prefix "land attack drop" 
-sudo iptables -A INPUT -p tcp -s $SUBSTRING/32 -d $SUBSTRING/32 -j DROP
+sudo iptables -A INPUT -s $SUBSTRING/32 -d $SUBSTRING/32 -j LOG --log-prefix "land attack drop" 
+sudo iptables -A INPUT -s $SUBSTRING/32 -d $SUBSTRING/32 -j DROP
 
 
